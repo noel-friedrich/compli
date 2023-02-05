@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PrivacyActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10pt"
+                android:background="@color/primary"
+                android:weightSum="2">
+
+                <TableRow>
+
+                    <TextView
+                        android:id="@+id/privacy_back_btn"
+                        android:text="@string/back_btn"
+                        android:textColor="@color/white"
+                        android:textSize="14pt"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/quicksand_semibold"/>
+
+                    <TextView
+                        android:text="@string/privacy_header"
+                        android:textSize="14pt"
+                        android:textColor="@color/white"
+                        android:fontFamily="@font/lora_bold"
+                        android:layout_weight="1"/>
+
+                </TableRow>
+
+            </TableLayout>
+
+            <TextView
+                android:layout_marginTop="5pt"
+                android:text="@string/privacy_times_table"
+                android:textSize="11pt"
+                android:layout_marginLeft="10pt"
+                android:layout_marginRight="10pt"
+                android:fontFamily="@font/lora_regular"
+                android:textAlignment="center"/>
+
+            <TableLayout
+                android:id="@+id/times_table"
+                android:padding="15pt">
+
+            </TableLayout>
+
+            <TextView
+                android:layout_marginBottom="10pt"
+                android:text="@string/privacy_delete_data_text"
+                android:textSize="11pt"
+                android:layout_marginLeft="10pt"
+                android:layout_marginRight="10pt"
+                android:fontFamily="@font/lora_regular"
+                android:textAlignment="center"/>
+
+            <Button
+                android:text="@string/privacy_delete_data_btn"
+                android:layout_marginLeft="10pt"
+                android:layout_marginRight="10pt"
+                android:textAllCaps="false"
+                android:fontFamily="@font/quicksand_semibold"
+                android:textSize="10pt"
+                android:padding="5pt"
+                android:id="@+id/delete_data_btn"
+                android:background="@color/primary"/>
+
+        </TableLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

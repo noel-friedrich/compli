@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="20dp"
+                android:id="@+id/time_container"
+                android:background="@color/white"
+                android:stretchColumns="1">
+
+                <TableRow>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/default_time"
+                        android:textSize="25pt"
+                        android:textColor="@color/primary"
+                        android:layout_marginRight="10dp"
+                        android:id="@+id/seconds_output"
+                        android:fontFamily="monospace"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/first_time_unit"
+                        android:textSize="25pt"
+                        android:fontFamily="@font/lora_bold"
+                        android:textColor="@color/primary"/>
+
+                </TableRow>
+
+                <TableRow>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/default_time"
+                        android:textSize="25pt"
+                        android:textColor="@color/primary"
+                        android:layout_marginRight="10dp"
+                        android:id="@+id/minutes_output"
+                        android:fontFamily="monospace"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/second_time_unit"
+                        android:textSize="25pt"
+                        android:fontFamily="@font/lora_bold"
+                        android:textColor="@color/primary"/>
+
+                </TableRow>
+
+                <TableRow>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/default_time"
+                        android:textSize="25pt"
+                        android:textColor="@color/primary"
+                        android:layout_marginRight="10dp"
+                        android:id="@+id/hours_output"
+                        android:fontFamily="monospace"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/third_time_unit"
+                        android:textSize="25pt"
+                        android:fontFamily="@font/lora_bold"
+                        android:textColor="@color/primary"/>
+
+                </TableRow>
+
+                <TableRow>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/default_time"
+                        android:textSize="25pt"
+                        android:textColor="@color/primary"
+                        android:layout_marginRight="10dp"
+                        android:id="@+id/days_output"
+                        android:fontFamily="monospace"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/fourth_time_unit"
+                        android:textSize="25pt"
+                        android:fontFamily="@font/lora_bold"
+                        android:textColor="@color/primary"/>
+
+                </TableRow>
+
+            </TableLayout>
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/time_container"
+                android:background="@color/tertiary"
+                android:id="@+id/primary_content"
+                android:padding="30dp">
+
+                <Button
+                    android:textAllCaps="false"
+                    android:textSize="11pt"
+                    android:padding="5pt"
+                    android:fontFamily="@font/quicksand_semibold"
+                    android:text="@string/give_compliment_btn"
+                    android:id="@+id/compliment_btn"/>
+
+                <TextView
+                    android:layout_marginTop="10pt"
+                    android:text="@string/mainpage_header"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/lora_bold"
+                    android:textSize="17pt"
+                    android:layout_marginBottom="10pt"
+                    android:textAlignment="center"/>
+
+                <TextView
+                    android:text="@string/mainpage_description"
+                    android:textSize="10pt"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/lora_regular"/>
+
+                <TextView
+                    android:layout_marginTop="10pt"
+                    android:text="@string/statistics_header"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/lora_bold"
+                    android:textSize="17pt"
+                    android:layout_marginBottom="10pt"
+                    android:textAlignment="center"/>
+
+                <TextView
+                    android:text="@string/default_statistics"
+                    android:textSize="10pt"
+                    android:id="@+id/statistics_text"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/lora_regular"/>
+
+            </TableLayout>
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/primary_content"
+                android:background="@color/primary"
+                android:padding="10dp"
+                android:weightSum="3">
+
+                <TableRow>
+
+                    <Button
+                        android:textAllCaps="false"
+                        android:textSize="8pt"
+                        android:fontFamily="@font/quicksand_semibold"
+                        android:padding="5pt"
+                        android:backgroundTint="@color/tertiary"
+                        android:layout_marginEnd="10pt"
+                        android:text="@string/open_settings"
+                        android:id="@+id/open_settings_btn"
+                        android:layout_weight="1"/>
+
+                    <Button
+                        android:textAllCaps="false"
+                        android:textSize="8pt"
+                        android:fontFamily="@font/quicksand_semibold"
+                        android:padding="5pt"
+                        android:backgroundTint="@color/tertiary"
+                        android:layout_marginEnd="10pt"
+                        android:text="@string/open_help"
+                        android:id="@+id/open_help_btn"
+                        android:layout_weight="1"/>
+
+                    <Button
+                        android:textAllCaps="false"
+                        android:textSize="8pt"
+                        android:fontFamily="@font/quicksand_semibold"
+                        android:padding="5pt"
+                        android:backgroundTint="@color/tertiary"
+                        android:text="@string/open_privacy"
+                        android:id="@+id/open_privacy_btn"
+                        android:layout_weight="1"/>
+
+                </TableRow>
+
+            </TableLayout>
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

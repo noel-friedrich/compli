@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".OptionsActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10pt"
+                android:background="@color/primary"
+                android:weightSum="2">
+
+                <TableRow>
+
+                    <TextView
+                        android:id="@+id/settings_back_btn"
+                        android:text="@string/back_btn"
+                        android:textColor="@color/white"
+                        android:textSize="14pt"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/quicksand_semibold"/>
+
+                    <TextView
+                        android:text="@string/options_header"
+                        android:textSize="14pt"
+                        android:textColor="@color/white"
+                        android:fontFamily="@font/lora_bold"
+                        android:layout_weight="1"/>
+
+                </TableRow>
+
+            </TableLayout>
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:padding="20sp"
+                android:shrinkColumns="*"
+                android:stretchColumns="*"
+                android:layout_height="wrap_content"
+                android:id="@+id/options_table"
+                android:weightSum="10">
+
+            </TableLayout>
+
+        </TableLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

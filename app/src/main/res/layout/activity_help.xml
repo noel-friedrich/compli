@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HelpActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10pt"
+                android:background="@color/primary"
+                android:weightSum="2">
+
+                <TableRow>
+
+                    <TextView
+                        android:id="@+id/help_back_btn"
+                        android:text="@string/back_btn"
+                        android:textColor="@color/white"
+                        android:textSize="14pt"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/quicksand_semibold"/>
+
+                    <TextView
+                        android:text="@string/help_header"
+                        android:textSize="14pt"
+                        android:textColor="@color/white"
+                        android:fontFamily="@font/lora_bold"
+                        android:layout_weight="1"/>
+
+                </TableRow>
+
+            </TableLayout>
+
+            <TableLayout
+                android:padding="10pt">
+
+                <TextView
+                    android:text="@string/help_header_why"
+                    android:textSize="14pt"
+                    android:fontFamily="@font/lora_bold"
+                    android:textAlignment="center"/>
+
+                <TextView
+                    android:layout_marginTop="5pt"
+                    android:text="@string/help_text_why"
+                    android:textSize="11pt"
+                    android:fontFamily="@font/lora_regular"
+                    android:textAlignment="center"/>
+
+                <TextView
+                    android:layout_marginTop="15pt"
+                    android:text="@string/help_header_how"
+                    android:textSize="14pt"
+                    android:fontFamily="@font/lora_bold"
+                    android:textAlignment="center"/>
+
+                <TextView
+                    android:layout_marginTop="5pt"
+                    android:text="@string/help_text_how"
+                    android:textSize="11pt"
+                    android:fontFamily="@font/lora_regular"
+                    android:textAlignment="center"/>
+
+                <TextView
+                    android:layout_marginTop="15pt"
+                    android:text="@string/help_header_help"
+                    android:textSize="14pt"
+                    android:fontFamily="@font/lora_bold"
+                    android:textAlignment="center"/>
+
+                <TextView
+                    android:layout_marginTop="5pt"
+                    android:text="@string/help_text_help"
+                    android:textSize="11pt"
+                    android:fontFamily="@font/lora_regular"
+                    android:textAlignment="center"/>
+
+            </TableLayout>
+
+        </TableLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
