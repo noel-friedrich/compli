@@ -12,7 +12,7 @@
     <string name="mainpage_header">What\'s this?</string>
     <string name="statistics_header">Statistics</string>
     <string name="mainpage_description">The time above shows how long it\'s been since you\'ve given a compliment to someone. Hit the button every time you give one! If the time passes 48 hours, I\'ll notify you to give another! People don\'t compliment each other enough!</string>
-    <string name="default_statistics">You haven\'t given enough compliments for this to show any relevant statistics yet. Once you have, they\'ll show here!</string>
+    <string name="default_statistics">You haven\'t given enough compliments for this to show any relevant statistics yet. Once you have, they\'ll be visible here!</string>
     <string name="timer_timestamp_key">timer_timestamp</string>
     <string name="options_header">Settings</string>
     <string name="privacy_header">Privacy</string>
