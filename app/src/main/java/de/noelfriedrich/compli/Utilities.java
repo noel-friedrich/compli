@@ -76,7 +76,8 @@ final public class Utilities {
 
     static public long alarmSecondsLeft(Context context, SharedPreferences settings) {
         int notificationHours = Options.getOption("notification_hours").getIntValue();
-        int notificationSeconds = notificationHours * 60 * 60; // seconds = hours * 60 * 60 = hours * 3600
+        // seconds = (minutes) * 60 = (hours * 60) * 60 = hours * 3600
+        int notificationSeconds = notificationHours * 3600;
 
         long lastTime = settings.getLong(context.getString(R.string.timer_timestamp_key), unixTimestamp());
         long difference = unixTimestamp() - lastTime;
@@ -91,8 +92,7 @@ final public class Utilities {
         if (!Options.getOption("send_notification").getBooleanValue())
             return;
 
-        SharedPreferences timerSettings = context.getSharedPreferences(
-                context.getString(R.string.options_timer_key), 0);
+        SharedPreferences timerSettings = context.getSharedPreferences(context.getString(R.string.options_timer_key), 0);
 
         long notificationTime = (unixTimestamp() + alarmSecondsLeft(context, timerSettings)) * 1000;
 

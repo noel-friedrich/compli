@@ -26,7 +26,7 @@
     <string name="back_btn">&lt;</string>
     <string name="options_timer_key">timer</string>
     <string name="options_settings_key">settings</string>
-    <string name="notification_title">Make a compliment!</string>
+    <string name="notification_title">Give a compliment!</string>
     <string name="notification_description">Compliment someone now and press the button to reset the timer!</string>
     <string name="privacy_delete_data_btn">Delete all Data</string>
     <string name="privacy_delete_data_text">Press the delete button below to delete all stored data. This will irreversibly remove all stored data, including the current settings.</string>

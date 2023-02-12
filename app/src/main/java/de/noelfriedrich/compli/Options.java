@@ -126,7 +126,7 @@ public class Options {
                     "Send the reminding notification after <value> hours of no compliment",
                     OptionType.INTEGER,
                     "48",
-                    " notification_hours"
+                    "notification_hours"
             ).setIntMinMax(1, 1000)
     };
 
