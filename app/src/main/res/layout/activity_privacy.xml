@@ -76,7 +76,8 @@
                 android:textSize="10pt"
                 android:padding="5pt"
                 android:id="@+id/delete_data_btn"
-                android:background="@color/primary"/>
+                android:background="@color/primary"
+                android:layout_marginBottom="30pt"/>
 
         </TableLayout>
 
