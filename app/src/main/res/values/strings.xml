@@ -1,9 +1,14 @@
 <resources>
     <string name="app_name">Compli</string>
-    <string name="first_time_unit">seconds</string>
-    <string name="second_time_unit">minutes</string>
-    <string name="third_time_unit">hours</string>
-    <string name="fourth_time_unit">days</string>
+    <string name="seconds">seconds</string>
+    <string name="minutes">minutes</string>
+    <string name="hours">hours</string>
+    <string name="days">days</string>
+    <string name="second">second</string>
+    <string name="minute">minute</string>
+    <string name="hour">hour</string>
+    <string name="day">day</string>
+    <string name="and">and</string>
     <string name="default_time">00</string>
     <string name="give_compliment_btn">I gave a compliment</string>
     <string name="open_settings">Settings</string>
@@ -11,18 +16,17 @@
     <string name="open_privacy">Privacy</string>
     <string name="mainpage_header">What\'s this?</string>
     <string name="statistics_header">Statistics</string>
-    <string name="mainpage_description">The time above shows how long it\'s been since you\'ve given a compliment to someone. Hit the button every time you give one! If the time passes 48 hours, I\'ll notify you to give another! People don\'t compliment each other enough!</string>
+    <string name="mainpage_description">The time above shows how long it\'s been since you\'ve given a compliment to someone. Hit the button every time you give one! If the time passes ${hours} hours, I\'ll notify you to give another! People don\'t compliment each other enough!</string>
     <string name="default_statistics">You haven\'t given enough compliments for this to show any relevant statistics yet. Once you have, they\'ll be visible here!</string>
     <string name="timer_timestamp_key">timer_timestamp</string>
     <string name="options_header">Settings</string>
     <string name="privacy_header">Privacy</string>
     <string name="help_header">Help</string>
     <string name="help_text_why">Compliments are a low effort but high reward system: giving a compliment to someone isn\'t much work, while receiving an honest compliment can make someones day. This App will remind you to give out more compliments. It spreads happiness!</string>
-    <string name="help_text_how">Every time you hit the compliment-button, the app resets its timer. Seeing a high time should remind you to spread some more happiness to those around you. Also, if you pass 48 hours without any compliment-giving, the App will send a notification encouraging you to do some work! This notification service can be turned off in the settings. </string>
+    <string name="help_text_how">"Every time you hit the compliment-button, the app resets its timer. Seeing a high time should remind you to spread some more happiness to those around you. Also, if you pass 48 (or whatever you selected) hours without any compliment-giving, the App will send a notification encouraging you to do some work! This notification service can be turned off in the settings. "</string>
     <string name="help_text_help">If you have any questions regarding this App, be sure to contact me, the developer, via email at\nnoel.friedrich@outlook.de</string>
     <string name="help_header_why">Why Compli?</string>
     <string name="help_header_how">How does it work?</string>
-    <string name="help_header_help">Need more Help?</string>
     <string name="back_btn">&lt;</string>
     <string name="options_timer_key">timer</string>
     <string name="options_settings_key">settings</string>
@@ -31,4 +35,12 @@
     <string name="privacy_delete_data_btn">Delete all Data</string>
     <string name="privacy_delete_data_text">Press the delete button below to delete all stored data. This will irreversibly remove all stored data, including the current settings.</string>
     <string name="privacy_times_table">Below is a table of all the times you hit the compliment button. This App does not send any data to any server and will work even when offline. All data is stored locally.</string>
+    <string name="help_header_help">Need more Help?</string>
+    <string name="setting_send_notification_header">Reminding Notification</string>
+    <string name="setting_send_notification_text">Once the timer reaches &lt;value:notification_hours&gt; hours, a reminding notification will be sent</string>
+    <string name="setting_notification_hours_header">Notification Time</string>
+    <string name="setting_notification_hours_text">Send the reminding notification after &lt;value&gt; hours of no compliment</string>
+    <string name="statistic_average">The average time between compliments is X.</string>
+    <string name="statistic_first">Your first recorded compliment has been given X ago.</string>
+    <string name="statistic_total">In total, you have given X compliments.</string>
 </resources>

@@ -38,8 +38,8 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/first_time_unit"
-                        android:textSize="25pt"
+                        android:text="@string/seconds"
+                        android:textSize="23pt"
                         android:fontFamily="@font/lora_bold"
                         android:textColor="@color/primary"/>
 
@@ -60,8 +60,8 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/second_time_unit"
-                        android:textSize="25pt"
+                        android:text="@string/minutes"
+                        android:textSize="23pt"
                         android:fontFamily="@font/lora_bold"
                         android:textColor="@color/primary"/>
 
@@ -82,8 +82,8 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/third_time_unit"
-                        android:textSize="25pt"
+                        android:text="@string/hours"
+                        android:textSize="23pt"
                         android:fontFamily="@font/lora_bold"
                         android:textColor="@color/primary"/>
 
@@ -104,8 +104,8 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/fourth_time_unit"
-                        android:textSize="25pt"
+                        android:text="@string/days"
+                        android:textSize="23pt"
                         android:fontFamily="@font/lora_bold"
                         android:textColor="@color/primary"/>
 
@@ -141,6 +141,7 @@
                 <TextView
                     android:text="@string/mainpage_description"
                     android:textSize="10pt"
+                    android:id="@+id/description_text"
                     android:textColor="@color/white"
                     android:fontFamily="@font/lora_regular"/>
 

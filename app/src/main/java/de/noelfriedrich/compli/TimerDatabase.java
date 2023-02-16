@@ -44,14 +44,14 @@ public class TimerDatabase {
         return (int) ((double) sum / (double) (times.length - 1));
     }
 
-    public static String[] statistics() {
+    public static String[] statistics(Context context) {
         String[] lines = new String[3];
         TimeInterval averageInterval = new TimeInterval(averageInterval());
         TimeInterval firstClickInterval = TimeInterval.fromPassedTime(getTimes()[0]);
 
-        lines[0] = "The average time between compliments is " + averageInterval.toString() + ".";
-        lines[1] = "Your first recorded compliment has been given " + firstClickInterval.toString() + " ago.";
-        lines[2] = "In total, you have given " + getTimes().length + " compliments.";
+        lines[0] = context.getString(R.string.statistic_average).replace("X", averageInterval.toString(context));
+        lines[1] = context.getString(R.string.statistic_first).replace("X", firstClickInterval.toString(context));
+        lines[2] = context.getString(R.string.statistic_total).replace("X", Integer.toString(getTimes().length));
 
         return lines;
     }

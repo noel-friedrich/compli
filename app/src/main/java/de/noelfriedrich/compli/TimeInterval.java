@@ -1,5 +1,7 @@
 package de.noelfriedrich.compli;
 
+import android.content.Context;
+
 import java.util.ArrayList;
 
 public class TimeInterval {
@@ -40,18 +42,18 @@ public class TimeInterval {
         return out;
     }
 
-    public String toString() {
+    public String toString(Context context) {
         ArrayList<String> statements = new ArrayList<String>();
-        if (daysRaw() == 1) statements.add(daysRaw() + " day");
-        if (daysRaw() > 1) statements.add(daysRaw() + " days");
-        if (hoursRaw() == 1) statements.add(hoursRaw() + " hour");
-        if (hoursRaw() > 1) statements.add(hoursRaw() + " hours");
-        if (minutesRaw() == 1) statements.add(minutesRaw() + " minute");
-        if (minutesRaw() > 1) statements.add(minutesRaw() + " minutes");
-        if (secondsRaw() == 1) statements.add(secondsRaw() + " second");
-        if (secondsRaw() > 1) statements.add(secondsRaw() + " seconds");
+        if (daysRaw() == 1) statements.add(daysRaw() + " " + context.getString(R.string.day));
+        if (daysRaw() > 1) statements.add(daysRaw() + " " + context.getString(R.string.days));
+        if (hoursRaw() == 1) statements.add(hoursRaw() + " " + context.getString(R.string.hour));
+        if (hoursRaw() > 1) statements.add(hoursRaw() + " " + context.getString(R.string.hours));
+        if (minutesRaw() == 1) statements.add(minutesRaw() + " " + context.getString(R.string.minute));
+        if (minutesRaw() > 1) statements.add(minutesRaw() + " " + context.getString(R.string.minutes));
+        if (secondsRaw() == 1) statements.add(secondsRaw() + " " + context.getString(R.string.second));
+        if (secondsRaw() > 1) statements.add(secondsRaw() + " " + context.getString(R.string.seconds));
 
-        if (statements.size() == 0) return "0 seconds";
+        if (statements.size() == 0) return "0 " + context.getString(R.string.seconds);
         if (statements.size() == 1) return statements.get(0);
 
         String out = "";
@@ -60,7 +62,7 @@ public class TimeInterval {
             if (i < statements.size() - 2) {
                 out += ", ";
             } else if (i < statements.size() - 1) {
-                out += " and ";
+                out += " " + context.getString(R.string.and) + " ";
             }
         }
 

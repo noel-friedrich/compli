@@ -113,22 +113,26 @@ class Option {
 
 public class Options {
 
-    public static Option[] options = {
-            new Option(
-                    "Reminding Notification",
-                    "Once the timer reaches <value:notification_hours> hours, a reminding notification will be sent.",
-                    OptionType.BOOLEAN,
-                    "true",
-                    "send_notification"
-            ),
-            new Option(
-                    "Notification Time",
-                    "Send the reminding notification after <value> hours of no compliment",
-                    OptionType.INTEGER,
-                    "48",
-                    "notification_hours"
-            ).setIntMinMax(1, 1000)
-    };
+    public static Option[] options;
+
+    public static void init(Context context) {
+        options = new Option[]{
+                new Option(
+                        context.getString(R.string.setting_send_notification_header),
+                        context.getString(R.string.setting_send_notification_text),
+                        OptionType.BOOLEAN,
+                        "true",
+                        "send_notification"
+                ),
+                new Option(
+                        context.getString(R.string.setting_notification_hours_header),
+                        context.getString(R.string.setting_notification_hours_text),
+                        OptionType.INTEGER,
+                        "48",
+                        "notification_hours"
+                ).setIntMinMax(1, 1000)
+        };
+    }
 
     public static void reset(SharedPreferences settings) {
         for (Option option : options) {

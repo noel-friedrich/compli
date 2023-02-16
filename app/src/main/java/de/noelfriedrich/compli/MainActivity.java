@@ -26,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
     TextView hoursView;
     TextView daysView;
 
+    TextView descriptionView;
+
     TextView statisticsTextView;
 
     Button complimentButton;
@@ -70,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
         TimerDatabase.update(settings);
         if (TimerDatabase.statisticsAvailable()) {
             String newStatistics = "";
-            for (String line : TimerDatabase.statistics()) {
+            for (String line : TimerDatabase.statistics(this)) {
                 newStatistics += line + "\n\n";
             }
             newStatistics = newStatistics.substring(0, newStatistics.length() - 2);
@@ -78,9 +80,22 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    void updateDescription() {
+        SharedPreferences opts = getSharedPreferences(getString(R.string.options_settings_key), 0);
+        Options.update(opts);
+
+        assert Options.getOption("notification_hours") != null;
+        String hours = Options.getOption("notification_hours").value;
+        String description = getString(R.string.mainpage_description)
+                .replaceAll("\\$\\{hours\\}", hours);
+
+        descriptionView.setText(description);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Options.init(this);
         setContentView(R.layout.activity_main);
 
         secondsView = findViewById(R.id.seconds_output);
@@ -88,6 +103,7 @@ public class MainActivity extends AppCompatActivity {
         hoursView = findViewById(R.id.hours_output);
         daysView = findViewById(R.id.days_output);
         statisticsTextView = findViewById(R.id.statistics_text);
+        descriptionView = findViewById(R.id.description_text);
 
         complimentButton = findViewById(R.id.compliment_btn);
         openHelpButton = findViewById(R.id.open_help_btn);
@@ -122,6 +138,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         updateStatistics();
+        updateDescription();
     }
 
     void loop() {
