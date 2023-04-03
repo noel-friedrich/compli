@@ -130,7 +130,28 @@ public class Options {
                         OptionType.INTEGER,
                         "48",
                         "notification_hours"
-                ).setIntMinMax(1, 1000)
+                ).setIntMinMax(1, 1000),
+                new Option(
+                        context.getString(R.string.setting_full_graph_header),
+                        context.getString(R.string.setting_full_graph_text),
+                        OptionType.BOOLEAN,
+                        "true",
+                        "show_full_graph"
+                ),
+                new Option(
+                    context.getString(R.string.setting_week_graph_header),
+                    context.getString(R.string.setting_week_graph_text),
+                    OptionType.BOOLEAN,
+                    "false",
+                    "show_week_graph"
+                ),
+                new Option(
+                        context.getString(R.string.setting_month_graph_header),
+                        context.getString(R.string.setting_month_graph_text),
+                        OptionType.BOOLEAN,
+                        "false",
+                        "show_month_graph"
+                )
         };
     }
 

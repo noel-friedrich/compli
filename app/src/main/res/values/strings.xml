@@ -40,6 +40,12 @@
     <string name="setting_send_notification_text">Once the timer reaches &lt;value:notification_hours&gt; hours, a reminding notification will be sent</string>
     <string name="setting_notification_hours_header">Notification Time</string>
     <string name="setting_notification_hours_text">Send the reminding notification after &lt;value&gt; hours of no compliment</string>
+    <string name="setting_full_graph_header">Full Graph</string>
+    <string name="setting_full_graph_text">Show a Graph of compliments given since you gave your first one</string>
+    <string name="setting_week_graph_header">Week Graph</string>
+    <string name="setting_week_graph_text">Show a Graph of compliments given in the last week (if that data is available)</string>
+    <string name="setting_month_graph_header">Month Graph</string>
+    <string name="setting_month_graph_text">Show a Graph of compliments given in the last month (if that data is available)</string>
     <string name="statistic_average">The average time between compliments is X.</string>
     <string name="statistic_first">Your first recorded compliment has been given X ago.</string>
     <string name="statistic_total">In total, you have given X compliments.</string>
