@@ -11,7 +11,7 @@
         android:roundIcon="@drawable/compli_logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.Compli"
-        tools:targetApi="31">
+        tools:targetApi="33">
         <activity
             android:name=".HelpActivity"
             android:exported="false">
