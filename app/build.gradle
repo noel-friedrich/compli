@@ -9,9 +9,9 @@ android {
     defaultConfig {
         applicationId "de.noelfriedrich.compli"
         minSdk 24
-        targetSdk 32
+        targetSdk 33
         versionCode 7
-        versionName "1.6"
+        versionName "1.7"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

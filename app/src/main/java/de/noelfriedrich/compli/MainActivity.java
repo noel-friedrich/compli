@@ -77,6 +77,8 @@ public class MainActivity extends AppCompatActivity {
             }
             newStatistics = newStatistics.substring(0, newStatistics.length() - 2);
             statisticsTextView.setText(newStatistics);
+        } else {
+            statisticsTextView.setText(R.string.default_statistics);
         }
     }
 
@@ -143,6 +145,7 @@ public class MainActivity extends AppCompatActivity {
 
     void loop() {
         updateViews();
+        updateStatistics();
         handler.postDelayed(this::loop, handlerIntervalMs);
     }
 }
