@@ -16,7 +16,7 @@
     <string name="open_privacy">Daten</string>
     <string name="mainpage_header">Was ist das?</string>
     <string name="statistics_header">Statistiken</string>
-    <string name="default_statistics">Du hast bisher zu wenige Komplimente gegeben, um hier relevante Statistiken zu zeigen. Wenn du genug gegeben hast, werden sie hier angezeigt!</string>
+    <string name="default_statistics">Du hast bisher zu wenige Komplimente gegeben, um relevante Statistiken zu zeigen. Wenn du genug gegeben hast, werden sie hier angezeigt!</string>
     <string name="timer_timestamp_key">timer_timestamp</string>
     <string name="options_header">Optionen</string>
     <string name="privacy_header">Daten</string>
