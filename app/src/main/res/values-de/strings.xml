@@ -10,6 +10,7 @@
     <string name="and">und</string>
     <string name="default_time">00</string>
     <string name="give_compliment_btn">Kompliment gegeben</string>
+    <string name="undo_compliment_btn">Kompliment Rückgängig</string>
     <string name="open_settings">Optionen</string>
     <string name="open_help">Hilfe</string>
     <string name="open_privacy">Daten</string>
@@ -43,10 +44,15 @@
     <string name="statistic_average">Die Durchschnittliche Zeit zwischen Komplimenten beträgt X.</string>
     <string name="statistic_first">Das erste aufgezeichnete Kompliment wurde vor X gegeben.</string>
     <string name="statistic_total">Ingesamt hast du X Komplimente gegeben.</string>
-    <string name="setting_full_graph_header">Ganze Statistik</string>
-    <string name="setting_full_graph_text">Zeige eine Statistik der gegebenen Komplimente seit dem ersten Kompliment</string>
     <string name="setting_week_graph_header">Wöchentliche Statistik</string>
     <string name="setting_week_graph_text">Zeige eine Statistik der gegebenen Komplimente der letzten Woche (sofern die Daten bestehen)</string>
-    <string name="setting_month_graph_header">Monatliche Statistik</string>
-    <string name="setting_month_graph_text">Zeige eine Statistik der gegebenen Komplimente des letzten Monats (sofern die Daten bestehen)</string>
+    <string name="monday_short">Mo</string>
+    <string name="tuesday_short">Di</string>
+    <string name="wednesday_short">Mi</string>
+    <string name="thursday_short">Do</string>
+    <string name="friday_short">Fr</string>
+    <string name="saturday_short">Sa</string>
+    <string name="sunday_short">So</string>
+    <string name="setting_undo_seconds_header">Rückgängig Sekunden</string>
+    <string name="setting_undo_seconds_text">Erlaube es, &lt;value&gt; Sekunden nach dem Geben eines Kompliments es Rückgängig zu machen</string>
 </resources>

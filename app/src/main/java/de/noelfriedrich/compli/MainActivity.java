@@ -1,21 +1,33 @@
 package de.noelfriedrich.compli;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Html;
 import android.text.Spanned;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TableLayout;
 import android.widget.TextView;
+
+import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Timer;
+import java.util.TreeMap;
 
 public class MainActivity extends AppCompatActivity {
 
     private Handler handler = new Handler();
+    private Handler buttonHandler = new Handler();
     private int handlerIntervalMs = 1000;
 
     SharedPreferences settings;
@@ -34,6 +46,12 @@ public class MainActivity extends AppCompatActivity {
     Button openOptionsButton;
     Button openHelpButton;
     Button openPrivacyButton;
+
+    TableLayout primaryContentLayout;
+
+    int COMPLIMENT_BUTTON_UNDO_MS = 5000;
+    boolean undoComplimentMode = false;
+    Long tempTimestamp = null;
 
     void updateTimerSetting(long newTime) {
         SharedPreferences.Editor editor = settings.edit();
@@ -80,11 +98,12 @@ public class MainActivity extends AppCompatActivity {
         } else {
             statisticsTextView.setText(R.string.default_statistics);
         }
+
+        updateGraphs();
     }
 
     void updateDescription() {
-        SharedPreferences opts = getSharedPreferences(getString(R.string.options_settings_key), 0);
-        Options.update(opts);
+        updateOptions();
 
         assert Options.getOption("notification_hours") != null;
         String hours = Options.getOption("notification_hours").value;
@@ -92,6 +111,54 @@ public class MainActivity extends AppCompatActivity {
                 .replaceAll("\\$\\{hours\\}", hours);
 
         descriptionView.setText(description);
+    }
+
+    StatisticsView addStatisticView() {
+        StatisticsView statisticsView = new StatisticsView(this);
+        primaryContentLayout.addView(statisticsView);
+        TableLayout.LayoutParams params = (TableLayout.LayoutParams) statisticsView.getLayoutParams();
+        params.setMargins(0, 50, 0, 0);
+        statisticsView.post(new Runnable() {
+            @Override
+            public void run() {
+                float aspectRatio = 16f / 9f;
+                int height = (int) (statisticsView.getWidth() * (1f / aspectRatio));
+                statisticsView.setMinimumHeight(height);
+            }
+        });
+        return statisticsView;
+    }
+
+    void showWeekStatistic(StatisticsView statisticsView) {
+        statisticsView.setTitle(getString(R.string.setting_week_graph_header));
+        TreeMap<LocalDate, Integer> dayCompliments = TimerDatabase.toComplimentsPerDay();
+
+        if (dayCompliments.size() < 7) {
+            return;
+        }
+
+        String[] labels = new String[7];
+        int[] statisticsData = new int[7];
+        for (int i = 0; i < 7; i++) {
+            int index = dayCompliments.size() - (7 - i);
+            LocalDate localDate = dayCompliments.keySet().toArray(new LocalDate[0])[index];
+            int compliments = dayCompliments.get(localDate);
+            int weekDayIndex = localDate.getDayOfWeek().getValue();
+            String weekDayName = Utilities.weekdayToShortString(this, weekDayIndex);
+
+            labels[i] = weekDayName;
+            statisticsData[i] = compliments;
+        }
+
+        statisticsView.setLabels(labels);
+        statisticsView.setData(statisticsData);
+
+        statisticsView.post(new Runnable() {
+            @Override
+            public void run() {
+                statisticsView.invalidate();
+            }
+        });
     }
 
     @Override
@@ -112,6 +179,8 @@ public class MainActivity extends AppCompatActivity {
         openOptionsButton = findViewById(R.id.open_settings_btn);
         openPrivacyButton = findViewById(R.id.open_privacy_btn);
 
+        primaryContentLayout = findViewById(R.id.primary_content);
+
         Utilities.addActivityChangeListener(this, openHelpButton, HelpActivity.class);
         Utilities.addActivityChangeListener(this, openOptionsButton, OptionsActivity.class);
         Utilities.addActivityChangeListener(this, openPrivacyButton, PrivacyActivity.class);
@@ -126,21 +195,85 @@ public class MainActivity extends AppCompatActivity {
 
         loop();
 
-        Context context = this;
         complimentButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                resetTimer();
-                updateViews();
-                Utilities.createNotificationChannel(context);
-                Utilities.registerNotifyAlarm(context);
-                TimerDatabase.addTime(Utilities.unixTimestamp(), settings);
-                updateStatistics();
+                if (undoComplimentMode) {
+                    undoCompliment();
+                } else {
+                    giveCompliment();
+                }
             }
         });
 
         updateStatistics();
         updateDescription();
+
+        TimerDatabase.update(settings);
+        addStatistics();
+    }
+
+    StatisticsView weekStatisticView = null;
+
+    void updateOptions() {
+        SharedPreferences opts = getSharedPreferences(getString(R.string.options_settings_key), 0);
+        Options.update(opts);
+    }
+
+    void addStatistics() {
+        updateOptions();
+
+        if (Options.getOption("show_week_graph").getBooleanValue()) {
+            weekStatisticView = addStatisticView();
+            showWeekStatistic(weekStatisticView);
+        }
+    }
+
+    void updateGraphs() {
+        if (weekStatisticView != null) {
+            showWeekStatistic(weekStatisticView);
+        }
+    }
+
+    void giveCompliment() {
+        tempTimestamp = getTimerSetting();
+
+        resetTimer();
+        updateViews();
+        Utilities.createNotificationChannel(this);
+        Utilities.registerNotifyAlarm(this);
+        TimerDatabase.addTime(Utilities.unixTimestamp(), settings);
+        updateStatistics();
+
+        complimentButton.setText(R.string.undo_compliment_btn);
+        undoComplimentMode = true;
+
+        updateOptions();
+        int undoSeconds = Options.getOption("undo_seconds").getIntValue();
+        buttonHandler.postDelayed(this::resetButton, undoSeconds * 1000);
+    }
+
+    void undoCompliment() {
+        if (tempTimestamp == null || !undoComplimentMode) {
+            return;
+        }
+
+        TimerDatabase.popLast(settings);
+        updateTimerSetting(tempTimestamp);
+        tempTimestamp = null;
+        updateViews();
+        updateStatistics();
+        resetButton();
+        // TODO: remove current notification
+    }
+
+    void resetButton() {
+        if (!undoComplimentMode) {
+            return;
+        }
+
+        complimentButton.setText(R.string.give_compliment_btn);
+        undoComplimentMode = false;
     }
 
     void loop() {

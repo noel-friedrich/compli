@@ -3,12 +3,29 @@ package de.noelfriedrich.compli;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
+import android.os.Build;
 import android.view.View;
 import android.widget.TableLayout;
 import android.widget.TextView;
 
+import androidx.annotation.RequiresApi;
+
+import java.sql.Array;
 import java.sql.Time;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.chrono.ChronoLocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Deque;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Locale;
+import java.util.Stack;
+import java.util.TreeMap;
 
 public class TimerDatabase {
 
@@ -17,6 +34,63 @@ public class TimerDatabase {
 
     public static void update(SharedPreferences settings) {
         csvTimes = settings.getString(settingsKey, "");
+    }
+
+    public static TreeMap<LocalDate, Integer> toComplimentsPerDay() {
+        long[] times = getTimes();
+        ArrayList<Long> timeDeque = new ArrayList<Long>();
+        for (int i = 0; i < times.length; i++) {
+            timeDeque.add(times[i]);
+        }
+
+        TreeMap<LocalDate, Integer> count = new TreeMap<LocalDate, Integer>();
+
+        LocalDate start;
+        if (times.length == 0) {
+            start = LocalDate.now();
+        } else {
+            start = new Date(times[0] * 1000).toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        }
+
+        LocalDate end = LocalDate.now().plusDays(1);
+
+        while (ChronoUnit.DAYS.between(start, end) < 7) {
+            start = start.minusDays(1);
+        }
+
+        final int dayInMillis = 1000 * 60 * 60 * 24;
+        for (LocalDate currDate = start; currDate.isBefore(end); currDate = currDate.plusDays(1))  {
+            long currDateMillis = currDate.atStartOfDay(ZoneId.systemDefault()).toInstant().toEpochMilli();
+            currDateMillis += dayInMillis;
+
+            if (timeDeque.size() == 0) {
+                count.put(currDate, 0);
+                continue;
+            }
+
+            int tempCount = 0;
+            while (timeDeque.get(0) * 1000 < currDateMillis) {
+                tempCount++;
+                timeDeque.remove(0);
+                if (timeDeque.size() == 0)
+                    break;
+            }
+
+            count.put(currDate, tempCount);
+        }
+
+        return count;
+    }
+
+    public static String csvFromTimes(long[] times) {
+        String out = "";
+        for (int i = 0; i < times.length; i++) {
+            out += Long.toString(times[i]);
+            if (i != times.length - 1) {
+                out += ",";
+            }
+        }
+        return out;
     }
 
     public static long[] getTimes() {
@@ -73,6 +147,19 @@ public class TimerDatabase {
             csvTimes += ",";
         }
         csvTimes += strTime;
+        updateCsvTimes(settings);
+    }
+
+    public static void popLast(SharedPreferences settings) {
+        long[] times = getTimes();
+        if (times.length == 0)
+            return;
+
+        long[] newTimes = new long[times.length - 1];
+        for (int i = 0; i < times.length - 1; i++) {
+            newTimes[i] = times[i];
+        }
+        csvTimes = csvFromTimes(newTimes);
         updateCsvTimes(settings);
     }
 

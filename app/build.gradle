@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         applicationId "de.noelfriedrich.compli"
-        minSdk 24
+        minSdk 26
         targetSdk 33
         versionCode 7
         versionName "1.7"

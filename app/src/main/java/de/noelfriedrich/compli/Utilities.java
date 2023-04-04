@@ -37,8 +37,32 @@ final public class Utilities {
         });
     }
 
+    static public String arrayToString(Integer[] arr) {
+        String out = "[l=" + arr.length + ",";
+        for (int i = 0; i < arr.length; i++) {
+            out += arr[i];
+            if (i < arr.length - 1) {
+                out += ",";
+            }
+        }
+        return out + "]";
+    }
+
     static long unixTimestamp() {
         return System.currentTimeMillis() / 1000;
+    }
+
+    static public String weekdayToShortString(Context context, int dayIndex) {
+        switch(dayIndex) {
+            case 1: return context.getString(R.string.monday_short);
+            case 2: return context.getString(R.string.tuesday_short);
+            case 3: return context.getString(R.string.wednesday_short);
+            case 4: return context.getString(R.string.thursday_short);
+            case 5: return context.getString(R.string.friday_short);
+            case 6: return context.getString(R.string.saturday_short);
+            case 7: return context.getString(R.string.sunday_short);
+        }
+        return null;
     }
 
     static public String timestampToString(long s) {
@@ -110,6 +134,7 @@ final public class Utilities {
     static public void removeCurrTimer(Context context, SharedPreferences settings) {
         SharedPreferences.Editor editor = settings.edit();
         editor.remove(context.getString(R.string.timer_timestamp_key));
+        editor.commit();
     }
 
 }
