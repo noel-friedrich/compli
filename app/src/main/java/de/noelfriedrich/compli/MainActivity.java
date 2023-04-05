@@ -49,7 +49,6 @@ public class MainActivity extends AppCompatActivity {
 
     TableLayout primaryContentLayout;
 
-    int COMPLIMENT_BUTTON_UNDO_MS = 5000;
     boolean undoComplimentMode = false;
     Long tempTimestamp = null;
 
