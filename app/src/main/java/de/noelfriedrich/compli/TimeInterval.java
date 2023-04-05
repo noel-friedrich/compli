@@ -69,35 +69,57 @@ public class TimeInterval {
         return out;
     }
 
+    boolean SCREENSHOT_MODE = true;
+
     public long secondsRaw() {
+        if (SCREENSHOT_MODE) {
+            return 2;
+        }
+
         return this.totalSeconds % 60;
     }
 
     public long minutesRaw() {
+        if (SCREENSHOT_MODE) {
+            return 4;
+        }
+
         return this.totalMinutes() % 60;
     }
 
     public long hoursRaw() {
+        if (SCREENSHOT_MODE) {
+            return 8;
+        }
+
         return this.totalHours() % 24;
     }
 
     public long daysRaw() {
+        if (SCREENSHOT_MODE) {
+            return 16;
+        }
+
         return this.totalDays() % 60;
     }
 
     public String seconds() {
-        return numToString(this.totalSeconds % 60, 2);
+        return numToString(this.secondsRaw(), 2);
     }
 
     public String minutes() {
-        return numToString(this.totalMinutes() % 60, 2);
+        return numToString(this.minutesRaw(), 2);
     }
 
     public String hours() {
-        return numToString(this.totalHours() % 24, 2);
+        return numToString(this.hoursRaw(), 2);
     }
 
     public String days() {
+        if (SCREENSHOT_MODE) {
+            return "16";
+        }
+
         long days = this.totalDays();
         if (days > 99) {
             return "99+";

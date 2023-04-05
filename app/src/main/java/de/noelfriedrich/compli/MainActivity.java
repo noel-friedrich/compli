@@ -250,6 +250,8 @@ public class MainActivity extends AppCompatActivity {
 
         updateOptions();
         int undoSeconds = Options.getOption("undo_seconds").getIntValue();
+        // remove all previous delayed callbacks:
+        buttonHandler.removeCallbacksAndMessages(null);
         buttonHandler.postDelayed(this::resetButton, undoSeconds * 1000);
     }
 
