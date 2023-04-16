@@ -53,6 +53,9 @@
     <string name="friday_short">Fr</string>
     <string name="saturday_short">Sa</string>
     <string name="sunday_short">So</string>
+    <string name="streak_output">X Tage in Folge</string>
+    <string name="setting_streak_header">Tage in Folge</string>
+    <string name="setting_streak_text">Zeige die Tage in Folge, an denen du ein Kompliment gegeben hast</string>
     <string name="setting_undo_seconds_header">Rückgängig Sekunden</string>
     <string name="setting_undo_seconds_text">Erlaube es, &lt;value&gt; Sekunden nach dem Geben eines Kompliments es Rückgängig zu machen</string>
 </resources>

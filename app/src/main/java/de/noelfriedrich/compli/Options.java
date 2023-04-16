@@ -142,6 +142,14 @@ public class Options {
                 ),
 
                 new Option(
+                        context.getString(R.string.setting_streak_header),
+                        context.getString(R.string.setting_streak_text),
+                        OptionType.BOOLEAN,
+                        "true",
+                        "show_streak"
+                ),
+
+                new Option(
                         context.getString(R.string.setting_undo_seconds_header),
                         context.getString(R.string.setting_undo_seconds_text),
                         OptionType.INTEGER,

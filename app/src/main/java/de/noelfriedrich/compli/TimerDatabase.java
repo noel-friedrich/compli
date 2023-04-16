@@ -36,7 +36,28 @@ public class TimerDatabase {
         csvTimes = settings.getString(settingsKey, "");
     }
 
-    public static TreeMap<LocalDate, Integer> toComplimentsPerDay() {
+    public static String getStreak() {
+        int minDays = 1000;
+        while (true) {
+            TreeMap<LocalDate, Integer> complimentsPerDay = toComplimentsPerDay(minDays);
+            Integer[] compliments = complimentsPerDay.values().toArray(new Integer[0]);
+            int streak = 0;
+            for (int i = compliments.length - 1; i >= 0; i--) {
+                if (compliments[i] == 0) {
+                    return Integer.toString(streak);
+                } else {
+                    streak++;
+                }
+            }
+            minDays += 1000;
+
+            if (minDays > 100000) {
+                return "99999+";
+            }
+        }
+    }
+
+    public static TreeMap<LocalDate, Integer> toComplimentsPerDay(int minDays) {
         long[] times = getTimes();
         ArrayList<Long> timeDeque = new ArrayList<Long>();
         for (int i = 0; i < times.length; i++) {
@@ -54,7 +75,7 @@ public class TimerDatabase {
 
         LocalDate end = LocalDate.now().plusDays(1);
 
-        while (ChronoUnit.DAYS.between(start, end) < 7) {
+        while (ChronoUnit.DAYS.between(start, end) < minDays) {
             start = start.minusDays(1);
         }
 

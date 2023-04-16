@@ -45,6 +45,8 @@
     <string name="setting_week_graph_text">Show a Graph of compliments given in the last week (if that data is available)</string>
     <string name="setting_undo_seconds_header">Undo Seconds</string>
     <string name="setting_undo_seconds_text">Allow undoing a compliment for &lt;value&gt; seconds after giving one</string>
+    <string name="setting_streak_header">Show Streak</string>
+    <string name="setting_streak_text">Show the days you have given at least one compliment on</string>
     <string name="statistic_average">The average time between compliments is X.</string>
     <string name="statistic_first">Your first recorded compliment has been given X ago.</string>
     <string name="statistic_total">In total, you have given X compliments.</string>
@@ -55,4 +57,5 @@
     <string name="friday_short">Fr</string>
     <string name="saturday_short">Sa</string>
     <string name="sunday_short">Su</string>
+    <string name="streak_output">Streak: X days</string>
 </resources>

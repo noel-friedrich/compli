@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     TextView daysView;
 
     TextView descriptionView;
-
+    TextView streakView;
     TextView statisticsTextView;
 
     Button complimentButton;
@@ -101,6 +101,17 @@ public class MainActivity extends AppCompatActivity {
         updateGraphs();
     }
 
+    void updateStreak() {
+        if (Options.getOption("show_streak").getBooleanValue()) {
+            streakView.setVisibility(View.VISIBLE);
+            String streak = TimerDatabase.getStreak();
+            String streakString = getString(R.string.streak_output).replace("X", streak);
+            streakView.setText(streakString);
+        } else {
+            streakView.setVisibility(View.GONE);
+        }
+    }
+
     void updateDescription() {
         updateOptions();
 
@@ -130,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
 
     void showWeekStatistic(StatisticsView statisticsView) {
         statisticsView.setTitle(getString(R.string.setting_week_graph_header));
-        TreeMap<LocalDate, Integer> dayCompliments = TimerDatabase.toComplimentsPerDay();
+        TreeMap<LocalDate, Integer> dayCompliments = TimerDatabase.toComplimentsPerDay(7);
 
         if (dayCompliments.size() < 7) {
             return;
@@ -172,6 +183,7 @@ public class MainActivity extends AppCompatActivity {
         daysView = findViewById(R.id.days_output);
         statisticsTextView = findViewById(R.id.statistics_text);
         descriptionView = findViewById(R.id.description_text);
+        streakView = findViewById(R.id.streak_output);
 
         complimentButton = findViewById(R.id.compliment_btn);
         openHelpButton = findViewById(R.id.open_help_btn);
@@ -207,6 +219,7 @@ public class MainActivity extends AppCompatActivity {
 
         updateStatistics();
         updateDescription();
+        updateStreak();
 
         TimerDatabase.update(settings);
         addStatistics();
@@ -280,6 +293,8 @@ public class MainActivity extends AppCompatActivity {
     void loop() {
         updateViews();
         updateStatistics();
+        updateStreak();
+
         handler.postDelayed(this::loop, handlerIntervalMs);
     }
 }
