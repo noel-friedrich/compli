@@ -69,7 +69,7 @@ public class TimeInterval {
         return out;
     }
 
-    boolean SCREENSHOT_MODE = true;
+    boolean SCREENSHOT_MODE = false;
 
     public long secondsRaw() {
         if (SCREENSHOT_MODE) {
